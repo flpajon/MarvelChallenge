@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(private val dataSourceCharacter: CharacterDataSource){
 
-    suspend fun fetchCharacterList(): List<Character> = dataSourceCharacter.getCharacters().toListCharacter()
+    suspend fun fetchCharacterList(offset: Int): List<Character> = dataSourceCharacter.getCharacters(offset).toListCharacter()
 }

@@ -11,7 +11,7 @@ import javax.inject.Inject
 class CharacterDataSourceImpl @Inject constructor(private val service: CharacterService) :
     CharacterDataSource {
 
-    override suspend fun getCharacters(): List<CharacterDTO> = withContext(Dispatchers.IO) {
-        service.getCharacters(AppConstants.TS, AppConstants.API_KEY, AppConstants.HASH).await().data.results
+    override suspend fun getCharacters(offset: Int): List<CharacterDTO> = withContext(Dispatchers.IO) {
+        service.getCharacters(AppConstants.TS, AppConstants.API_KEY, AppConstants.HASH, AppConstants.LIMIT_CHARACTER, offset).await().data.results
     }
 }

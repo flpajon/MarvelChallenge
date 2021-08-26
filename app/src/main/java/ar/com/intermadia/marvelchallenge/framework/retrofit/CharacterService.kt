@@ -10,6 +10,8 @@ interface CharacterService {
     fun getCharacters(
         @Query("ts") ts: Int,
         @Query("apikey") apikey: String,
-        @Query("hash") hash: String
+        @Query("hash") hash: String,
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Call<CharacterListResponse>
 }

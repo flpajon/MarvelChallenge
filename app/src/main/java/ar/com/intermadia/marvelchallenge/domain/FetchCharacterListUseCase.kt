@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class FetchCharacterListUseCase @Inject constructor(private val repositoryCharacter: CharacterRepository){
 
-    suspend fun fetchCharacterList(): List<Character> = repositoryCharacter.fetchCharacterList()
+    suspend fun fetchCharacterList(offset: Int): List<Character> = repositoryCharacter.fetchCharacterList(offset)
 }

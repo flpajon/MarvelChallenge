@@ -29,7 +29,7 @@
         android:paddingRight="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/character_view"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <ProgressBar
         android:id="@+id/pb_character_list"

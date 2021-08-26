@@ -1,9 +1,11 @@
 package ar.com.intermadia.marvelchallenge.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ar.com.intermadia.marvelchallenge.MarvelChallengeApp
 import ar.com.intermadia.marvelchallenge.core.BaseViewHolder
 import ar.com.intermadia.marvelchallenge.data.model.Character
 import ar.com.intermadia.marvelchallenge.databinding.CharacterViewBinding
@@ -34,6 +36,9 @@ class CharacterListAdapter(private val characterList: List<Character>) :
             binding.tvCharacterName.text = item.name.toUpperCase(Locale.ROOT)
             binding.tvCharacterDescription.text = item.description
             Glide.with(context).load(item.thumbnail).centerCrop().into(binding.ivCharacterImage)
+            binding.cvCharacter.setOnClickListener {
+                Log.d(MarvelChallengeApp.TAG, "onClick: $item")
+            }
         }
     }
 }
