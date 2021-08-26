@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Marvel Challenge</string>
+    <string name="facebook_application_id" translatable="false">547450449637705</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb547450449637705</string>
+
+    <string name="character_item_content_description">Character Marvel</string>
+</resources>
