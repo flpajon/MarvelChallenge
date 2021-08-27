@@ -2,6 +2,8 @@ package ar.com.intermadia.marvelchallenge.framework.hilt
 
 import ar.com.intermadia.marvelchallenge.data.character.CharacterDataSourceImpl
 import ar.com.intermadia.marvelchallenge.data.character.CharacterRepository
+import ar.com.intermadia.marvelchallenge.data.event.EventDataSourceImpl
+import ar.com.intermadia.marvelchallenge.data.event.EventRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,5 +14,8 @@ import dagger.hilt.android.components.ActivityRetainedComponent
 class ViewModelModule {
 
     @Provides
-    fun provideIsUserAuth(dataSourceCharacter: CharacterDataSourceImpl) = CharacterRepository(dataSourceCharacter)
+    fun provideFetchCharacterList(dataSourceCharacter: CharacterDataSourceImpl) = CharacterRepository(dataSourceCharacter)
+
+    @Provides
+    fun provideFetchEventList(dataSourceEvent: EventDataSourceImpl) = EventRepository(dataSourceEvent)
 }

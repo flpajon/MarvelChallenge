@@ -11,12 +11,16 @@ import ar.com.intermadia.marvelchallenge.databinding.CharacterItemViewBinding
 import com.bumptech.glide.Glide
 import java.util.*
 
-class CharacterListAdapter(private val characterList: List<Character>, private val itemClickListener: OnCharacterClickListener) :
+class CharacterListAdapter(
+    private val characterList: List<Character>,
+    private val itemClickListener: OnCharacterClickListener
+) :
     RecyclerView.Adapter<BaseViewHolder<*>>() {
 
-    interface OnCharacterClickListener{
+    interface OnCharacterClickListener {
         fun onCharacterClick(character: Character)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val itemBinding =
             CharacterItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)

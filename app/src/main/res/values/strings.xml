@@ -4,6 +4,7 @@
     <string name="facebook_login_protocol_scheme" translatable="false">fb547450449637705</string>
 
     <string name="character_item_content_description">Character Marvel</string>
+    <string name="event_item_content_description">Event Marvel</string>
     <string name="characters_marvel">Characters</string>
     <string name="event_marvel">Events</string>
 </resources>

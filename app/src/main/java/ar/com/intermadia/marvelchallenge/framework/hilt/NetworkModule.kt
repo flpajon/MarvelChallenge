@@ -2,6 +2,7 @@ package ar.com.intermadia.marvelchallenge.framework.hilt
 
 import ar.com.intermadia.marvelchallenge.application.AppConstants
 import ar.com.intermadia.marvelchallenge.framework.retrofit.CharacterService
+import ar.com.intermadia.marvelchallenge.framework.retrofit.EventService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -31,4 +32,9 @@ class NetworkModule {
     @Singleton
     fun provideCharacterService(retrofit: Retrofit): CharacterService =
         retrofit.create(CharacterService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideEventService(retrofit: Retrofit): EventService =
+        retrofit.create(EventService::class.java)
 }

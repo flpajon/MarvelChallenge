@@ -25,7 +25,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CharacterListFragment : Fragment(R.layout.fragment_character_list), CharacterListAdapter.OnCharacterClickListener {
+class CharacterListFragment : Fragment(R.layout.fragment_character_list),
+    CharacterListAdapter.OnCharacterClickListener {
 
     private val TAG: String = "${MarvelChallengeApp.TAG}${this.javaClass.name}"
 
@@ -34,6 +35,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
     private lateinit var binding: FragmentCharacterListBinding
 
     private lateinit var rvAdapter: CharacterListAdapter
+
     private val characterList = mutableListOf<Character>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

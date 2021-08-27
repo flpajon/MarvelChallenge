@@ -14,7 +14,7 @@ fun CharacterDTO.toCharacter(): Character = Character(
     this.name,
     this.description,
     this.thumbnail.path + "/standard_large." + this.thumbnail.extension,
-    this.comics.items.toComicsList()
+    this.comics.items.toComicsListFromItemDTO()
 )
 
 fun List<CharacterDTO>.toCharacterList(): List<Character> {

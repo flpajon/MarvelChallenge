@@ -29,19 +29,4 @@ class CharacterListViewModel @ViewModelInject constructor(private val useCaseFet
             characterList.value = Result.Failure(Exception(throwable))
         }
     }
-
-//    val characterList: StateFlow<Result<List<Character>>> = flow {
-//        kotlin.runCatching {
-//            useCaseFetchCharacterList.fetchCharacterList(0)
-//        }.onSuccess { characterList ->
-//            emit(Result.Success(characterList))
-//        }.onFailure { throwable ->
-//            emit(Result.Failure(Exception(throwable)))
-//        }
-//    }.stateIn(
-//        scope = viewModelScope,
-//        started = SharingStarted.WhileSubscribed(5000),
-//        initialValue = Result.Loading()
-//    )
-
 }
