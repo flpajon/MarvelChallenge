@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/characterListFragment"
+        android:icon="@drawable/ic_characters"
+        android:title="@string/characters_marvel" />
+    <item
+        android:id="@+id/eventsFragment"
+        android:icon="@drawable/ic_events"
+        android:title="@string/event_marvel"/>
+</menu>

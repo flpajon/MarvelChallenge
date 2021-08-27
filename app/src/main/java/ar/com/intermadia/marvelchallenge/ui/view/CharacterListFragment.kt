@@ -3,7 +3,6 @@ package ar.com.intermadia.marvelchallenge.ui.view
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Adapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,9 +25,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
+class CharacterListFragment : Fragment(R.layout.fragment_character_list), CharacterListAdapter.OnCharacterClickListener {
 
-    private val TAG: String = "${MarvelChallengeApp.TAG}CharacterListFragment"
+    private val TAG: String = "${MarvelChallengeApp.TAG}${this.javaClass.name}"
+
     private val viewModel by viewModels<CharacterListViewModel>()
 
     private lateinit var binding: FragmentCharacterListBinding
@@ -40,7 +40,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCharacterListBinding.bind(view)
 
-        rvAdapter = CharacterListAdapter(characterList)
+        rvAdapter = CharacterListAdapter(characterList, this)
         binding.rvCharacterList.adapter = rvAdapter
 
         loadCharacterList()
@@ -89,5 +89,9 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
                 }
             }
         }
+    }
+
+    override fun onCharacterClick(character: Character) {
+        Log.d(TAG, "onCharacterClick: $character")
     }
 }

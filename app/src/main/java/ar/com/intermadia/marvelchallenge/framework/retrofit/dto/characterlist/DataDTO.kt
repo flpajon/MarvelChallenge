@@ -1,6 +1,6 @@
-package ar.com.intermadia.marvelchallenge.framework.retrofit.dto
+package ar.com.intermadia.marvelchallenge.framework.retrofit.dto.characterlist
 
-data class Data(
+data class DataDTO(
     val count: String,
     val limit: String,
     val offset: String,

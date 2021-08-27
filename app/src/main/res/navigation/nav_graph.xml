@@ -9,4 +9,14 @@
         android:name="ar.com.intermadia.marvelchallenge.ui.view.CharacterListFragment"
         android:label="fragment_character_list"
         tools:layout="@layout/fragment_character_list" />
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="ar.com.intermadia.marvelchallenge.ui.view.EventListFragment"
+        android:label="fragment_events"
+        tools:layout="@layout/fragment_events_list" />
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="ar.com.intermadia.marvelchallenge.ui.view.CharacterDetailsFragment"
+        android:label="fragment_character_details"
+        tools:layout="@layout/fragment_character_details" />
 </navigation>

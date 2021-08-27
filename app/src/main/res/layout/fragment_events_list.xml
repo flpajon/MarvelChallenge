@@ -28,7 +28,7 @@
         android:paddingTop="8dp"
         android:paddingRight="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/character_item_view"
+        tools:listitem="@layout/event_item_view"
         android:visibility="visible"/>
 
     <ProgressBar
