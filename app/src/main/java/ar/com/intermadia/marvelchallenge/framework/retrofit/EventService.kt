@@ -12,5 +12,6 @@ interface EventService {
         @Query("apikey") apikey: String,
         @Query("hash") hash: String,
         @Query("limit") limit: Int,
+        @Query("orderBy") orderBy: String
     ): Call<EventListResponseDTO>
 }

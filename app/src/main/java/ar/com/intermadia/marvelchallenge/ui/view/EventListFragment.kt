@@ -3,6 +3,8 @@ package ar.com.intermadia.marvelchallenge.ui.view
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -80,7 +82,13 @@ class EventListFragment : Fragment(R.layout.fragment_events_list),
         }
     }
 
-    override fun onEventClick() {
-        Log.d(TAG, "onEventClick: click on expand/colapse arrow")
+    override fun onEventClick(llComicsList: LinearLayout, tvComicsToDiscuss: TextView) {
+        if (llComicsList.visibility == View.GONE){
+            llComicsList.show()
+            tvComicsToDiscuss.show()
+        }else{
+            llComicsList.hide()
+            tvComicsToDiscuss.hide()
+        }
     }
 }

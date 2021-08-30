@@ -9,4 +9,5 @@ object AppConstants {
     const val HASH = "b6d4cc5d184dcf64edeca7c20e4071c0"
     const val LIMIT_CHARACTERS = 15
     const val LIMIT_EVENTS = 25
+    const val ORDER_BY_EVENT = "startDate"
 }

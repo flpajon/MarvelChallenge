@@ -3,12 +3,15 @@ package ar.com.intermadia.marvelchallenge.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ar.com.intermadia.marvelchallenge.R
 import ar.com.intermadia.marvelchallenge.core.BaseViewHolder
 import ar.com.intermadia.marvelchallenge.data.model.Event
+import ar.com.intermadia.marvelchallenge.databinding.ComicsItemViewBinding
 import ar.com.intermadia.marvelchallenge.databinding.EventItemViewBinding
 import com.bumptech.glide.Glide
-import java.util.*
 
 class EventListAdapter(
     private val eventList: List<Event>,
@@ -17,14 +20,13 @@ class EventListAdapter(
     RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     interface OnEventClickListener {
-        fun onEventClick()
+        fun onEventClick(llComicsList: LinearLayout, tvComicsToDiscuss: TextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val itemBinding =
             EventItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val holder = EventListViewHolder(itemBinding, parent.context)
-        return holder
+        return EventListViewHolder(itemBinding, parent.context)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
@@ -40,12 +42,33 @@ class EventListAdapter(
         val context: Context
     ) : BaseViewHolder<Event>(binding.root) {
         override fun bind(item: Event) {
-            binding.ivExpandColapseArrow.setOnClickListener {
-                itemClickListener.onEventClick()
-            }
-            binding.tvEventName.text = item.name.toUpperCase(Locale.ROOT)
-            binding.tvEventDescription.text = item.description
+            binding.tvEventName.text = item.name
+            binding.tvStartDate.text = item.startDate
             Glide.with(context).load(item.thumbnail).centerCrop().into(binding.ivEventImage)
+            val llComicsList = binding.llComicsList
+            llComicsList.removeAllViews()
+            if (item.comicsList.isNotEmpty()) {
+                item.comicsList.forEach { comic ->
+                    val tempViewComics = ComicsItemViewBinding.inflate(
+                        LayoutInflater.from(llComicsList.context),
+                        llComicsList,
+                        false
+                    )
+                    tempViewComics.tvComicsName.text = comic.name
+                    llComicsList.addView(tempViewComics.root)
+                }
+            } else {
+                val tempViewComics = ComicsItemViewBinding.inflate(
+                    LayoutInflater.from(llComicsList.context),
+                    llComicsList,
+                    false
+                )
+                tempViewComics.tvComicsName.text = context.getString(R.string.comics_list_empty)
+                llComicsList.addView(tempViewComics.root)
+            }
+            binding.ivExpandColapseArrow.setOnClickListener {
+                itemClickListener.onEventClick(llComicsList, binding.tvComicsToDiscuss)
+            }
         }
     }
 }

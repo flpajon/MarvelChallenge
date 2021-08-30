@@ -7,4 +7,7 @@
     <string name="event_item_content_description">Event Marvel</string>
     <string name="characters_marvel">Characters</string>
     <string name="event_marvel">Events</string>
+    <string name="comics_to_dicuss">COMICS TO DISCUSS</string>
+    <string name="comics_list_empty">No se encontraron comics para este evento.</string>
+
 </resources>

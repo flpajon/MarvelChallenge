@@ -3,63 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_event"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:clipToPadding="true"
     android:orientation="horizontal"
     app:cardCornerRadius="4dp"
     tools:background="@color/black">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iv_event_image"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/character_item_content_description"
-            android:padding="15dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_info"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:layout_toEndOf="@+id/iv_event_image"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_event_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:maxLines="1"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                tools:text="Civil War" />
+            <ImageView
+                android:id="@+id/iv_event_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@string/character_item_content_description"
+                android:padding="15dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/tv_event_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                tools:text="9 de Agosto 2020" />
+            <LinearLayout
+                android:id="@+id/ll_info"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:layout_marginEnd="95dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_event_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:maxLines="1"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:text="Civil War" />
+
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="9 de Agosto 2020" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_expand_colapse_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:contentDescription="@string/event_item_content_description"
+                android:padding="30sp"
+                android:src="@drawable/ic_expand_arrow" />
+
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_expand_colapse_arrow"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_comics_list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_expand_arrow"
-            android:layout_centerVertical="true"
-            android:padding="20dp"
-            android:layout_alignParentEnd="true"
-            android:contentDescription="@string/event_item_content_description" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_comics_to_discuss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/comics_to_dicuss"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </androidx.cardview.widget.CardView>
