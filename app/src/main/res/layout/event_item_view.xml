@@ -27,7 +27,7 @@
                 android:contentDescription="@string/character_item_content_description"
                 android:padding="15dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher" />
+                tools:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:id="@+id/ll_info"
@@ -69,24 +69,23 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_comics_to_discuss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/comics_to_dicuss"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/ll_comics_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tv_comics_to_discuss"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/comics_to_dicuss"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:visibility="visible" />
-        </LinearLayout>
+            android:visibility="gone"/>
 
     </LinearLayout>
 

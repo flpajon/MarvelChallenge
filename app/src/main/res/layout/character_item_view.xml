@@ -18,9 +18,9 @@
             android:id="@+id/iv_character_image"
             android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:contentDescription="@string/character_item_content_description"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="@string/character_item_content_description" />
+            tools:src="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -3,8 +3,6 @@ package ar.com.intermadia.marvelchallenge.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.intermadia.marvelchallenge.R
 import ar.com.intermadia.marvelchallenge.core.BaseViewHolder
@@ -20,7 +18,7 @@ class EventListAdapter(
     RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     interface OnEventClickListener {
-        fun onEventClick(llComicsList: LinearLayout, tvComicsToDiscuss: TextView)
+        fun onEventClick(eventItemViewBinding: EventItemViewBinding)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
@@ -67,7 +65,7 @@ class EventListAdapter(
                 llComicsList.addView(tempViewComics.root)
             }
             binding.ivExpandColapseArrow.setOnClickListener {
-                itemClickListener.onEventClick(llComicsList, binding.tvComicsToDiscuss)
+                itemClickListener.onEventClick(binding)
             }
         }
     }

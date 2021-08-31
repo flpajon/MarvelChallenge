@@ -54,6 +54,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list),
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    binding.pbCharacterList.show()
                     viewModel.fetchCharacterList()
                 }
             }

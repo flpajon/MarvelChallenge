@@ -14,10 +14,10 @@
         android:background="@color/black"
         android:gravity="center"
         android:padding="15dp"
+        android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="@string/app_name" />
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_event_list"
@@ -27,14 +27,14 @@
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="8dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/event_item_view"
-        android:visibility="visible"/>
+        tools:listitem="@layout/event_item_view" />
 
     <ProgressBar
         android:id="@+id/pb_event_list"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
 </LinearLayout>

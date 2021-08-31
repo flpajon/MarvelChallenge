@@ -3,9 +3,8 @@ package ar.com.intermadia.marvelchallenge.ui.view
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -17,6 +16,7 @@ import ar.com.intermadia.marvelchallenge.core.Result
 import ar.com.intermadia.marvelchallenge.core.hide
 import ar.com.intermadia.marvelchallenge.core.show
 import ar.com.intermadia.marvelchallenge.data.model.Event
+import ar.com.intermadia.marvelchallenge.databinding.EventItemViewBinding
 import ar.com.intermadia.marvelchallenge.databinding.FragmentEventsListBinding
 import ar.com.intermadia.marvelchallenge.ui.adapter.EventListAdapter
 import ar.com.intermadia.marvelchallenge.ui.viewmodel.EventListViewModel
@@ -82,13 +82,25 @@ class EventListFragment : Fragment(R.layout.fragment_events_list),
         }
     }
 
-    override fun onEventClick(llComicsList: LinearLayout, tvComicsToDiscuss: TextView) {
-        if (llComicsList.visibility == View.GONE){
-            llComicsList.show()
-            tvComicsToDiscuss.show()
-        }else{
-            llComicsList.hide()
-            tvComicsToDiscuss.hide()
+    override fun onEventClick(eventItemViewBinding: EventItemViewBinding) {
+        if (eventItemViewBinding.llComicsList.visibility == View.GONE) {
+            eventItemViewBinding.ivExpandColapseArrow.setImageDrawable(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_collapse_arrow
+                )
+            )
+            eventItemViewBinding.llComicsList.show()
+            eventItemViewBinding.tvComicsToDiscuss.show()
+        } else {
+            eventItemViewBinding.ivExpandColapseArrow.setImageDrawable(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_expand_arrow
+                )
+            )
+            eventItemViewBinding.llComicsList.hide()
+            eventItemViewBinding.tvComicsToDiscuss.hide()
         }
     }
 }
