@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_characters"
         android:title="@string/characters_marvel" />
     <item
-        android:id="@+id/eventsFragment"
+        android:id="@+id/eventListFragment"
         android:icon="@drawable/ic_events"
         android:title="@string/event_marvel"/>
 </menu>

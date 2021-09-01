@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.intermadia.marvelchallenge.MarvelChallengeApp
 import ar.com.intermadia.marvelchallenge.R
+import ar.com.intermadia.marvelchallenge.application.AppConstants
 import ar.com.intermadia.marvelchallenge.core.Result
 import ar.com.intermadia.marvelchallenge.core.hide
 import ar.com.intermadia.marvelchallenge.core.show
@@ -20,15 +23,20 @@ import ar.com.intermadia.marvelchallenge.databinding.FragmentCharacterListBindin
 import ar.com.intermadia.marvelchallenge.ui.adapter.CharacterListAdapter
 import ar.com.intermadia.marvelchallenge.ui.viewmodel.CharacterListViewModel
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment(R.layout.fragment_character_list),
     CharacterListAdapter.OnCharacterClickListener {
 
     private val TAG: String = "${MarvelChallengeApp.TAG}${this.javaClass.name}"
+
+    @Inject
+    lateinit var gson: Gson
 
     private val viewModel by viewModels<CharacterListViewModel>()
 
@@ -95,6 +103,12 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list),
     }
 
     override fun onCharacterClick(character: Character) {
+        val jsonCharacter = getJSONCharacter(character)
+        findNavController().navigate(R.id.action_characterListFragment_to_characterDetailsFragment, bundleOf(AppConstants.CHARACTER_DETAILS to jsonCharacter))
         Log.d(TAG, "onCharacterClick: $character")
+    }
+
+    fun getJSONCharacter(character: Character): String {
+        return gson.toJson(character)
     }
 }

@@ -10,4 +10,5 @@ object AppConstants {
     const val LIMIT_CHARACTERS = 15
     const val LIMIT_EVENTS = 25
     const val ORDER_BY_EVENT = "startDate"
+    const val CHARACTER_DETAILS= "CHARACTER_DETAILS"
 }

@@ -36,14 +36,15 @@
                 tools:text="THANOS" />
 
             <ImageView
+                android:id="@+id/iv_close_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_character_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_character_name"
                 android:src="@drawable/ic_close_view"
-                android:paddingStart="10dp"
-                />
+                android:padding="10dp"
+                android:contentDescription="@string/close_view"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -51,13 +52,13 @@
         <ImageView
             android:id="@+id/iv_character_image"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="400dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/gl_60"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_character_name"
-            tools:src="@mipmap/ic_launcher" />
+            tools:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/character_image"/>
 
         <TextView
             android:id="@+id/tv_character_description"
@@ -93,12 +94,6 @@
             android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/tv_appears_in_these_comics" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_60"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.70" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -12,8 +12,8 @@ data class Character(
 
 fun CharacterDTO.toCharacter(): Character = Character(
     this.name,
-    this.description,
-    this.thumbnail.path + "/standard_large." + this.thumbnail.extension,
+    if(this.description.isEmpty()) "Sin descripcion" else this.description,
+    this.thumbnail.path + "/standard_fantastic." + this.thumbnail.extension,
     this.comics.items.toComicsListFromItemDTO()
 )
 

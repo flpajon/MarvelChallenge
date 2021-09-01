@@ -10,5 +10,7 @@
     <string name="comics_to_dicuss">COMICS TO DISCUSS</string>
     <string name="comics_list_empty">No se encontraron comics para este evento.</string>
     <string name="appears_in_these_comics">APPEARS IN THESE COMICS</string>
+    <string name="close_view">Close View</string>
+    <string name="character_image">Character Image</string>
 
 </resources>
