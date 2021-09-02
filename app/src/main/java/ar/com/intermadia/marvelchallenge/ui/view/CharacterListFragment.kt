@@ -7,9 +7,6 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.intermadia.marvelchallenge.MarvelChallengeApp
@@ -25,8 +22,6 @@ import ar.com.intermadia.marvelchallenge.ui.viewmodel.CharacterListViewModel
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -71,40 +66,41 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list),
 
     private fun loadCharacterList() {
         viewModel.fetchCharacterList()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getCharacterList().collect { result ->
-                    when (result) {
-                        is Result.Loading -> {
-                            binding.rvCharacterList.hide()
-                            binding.pbCharacterList.show()
-                        }
-                        is Result.Success -> {
-                            binding.pbCharacterList.hide()
-                            characterList.addAll(result.data)
-                            rvAdapter.notifyDataSetChanged()
-                            binding.rvCharacterList.show()
-                        }
-                        is Result.Failure -> {
-                            binding.pbCharacterList.hide()
-                            Toast.makeText(
-                                requireContext(),
-                                "Ocurrio un problema",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            FirebaseCrashlytics.getInstance().recordException(result.exception)
-                            Log.e(TAG, result.exception.toString())
-                        }
-                    }
-
+        viewModel.getCharacterList().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.rvCharacterList.hide()
+                    binding.pbCharacterList.show()
+                }
+                is Result.Success -> {
+                    binding.pbCharacterList.hide()
+                    characterList.addAll(result.data)
+                    rvAdapter.notifyDataSetChanged()
+                    binding.rvCharacterList.show()
+                }
+                is Result.Failure -> {
+                    binding.pbCharacterList.hide()
+                    Toast.makeText(
+                        requireContext(),
+                        "Ocurrio un problema",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    FirebaseCrashlytics.getInstance().recordException(result.exception)
+                    Log.e(TAG, result.exception.toString())
                 }
             }
+
         }
+
+
     }
 
     override fun onCharacterClick(character: Character) {
         val jsonCharacter = getJSONCharacter(character)
-        findNavController().navigate(R.id.action_characterListFragment_to_characterDetailsFragment, bundleOf(AppConstants.CHARACTER_DETAILS to jsonCharacter))
+        findNavController().navigate(
+            R.id.action_characterListFragment_to_characterDetailsFragment,
+            bundleOf(AppConstants.CHARACTER_DETAILS to jsonCharacter)
+        )
         Log.d(TAG, "onCharacterClick: $character")
     }
 

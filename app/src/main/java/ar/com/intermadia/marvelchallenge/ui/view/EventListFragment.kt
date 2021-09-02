@@ -7,9 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import ar.com.intermadia.marvelchallenge.MarvelChallengeApp
 import ar.com.intermadia.marvelchallenge.R
 import ar.com.intermadia.marvelchallenge.core.Result
@@ -22,8 +19,6 @@ import ar.com.intermadia.marvelchallenge.ui.adapter.EventListAdapter
 import ar.com.intermadia.marvelchallenge.ui.viewmodel.EventListViewModel
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EventListFragment : Fragment(R.layout.fragment_events_list),
@@ -51,35 +46,33 @@ class EventListFragment : Fragment(R.layout.fragment_events_list),
 
     private fun loadEventList() {
         viewModel.fetchEventList()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getEventList().collect { result ->
-                    when (result) {
-                        is Result.Loading -> {
-                            binding.rvEventList.hide()
-                            binding.pbEventList.show()
-                        }
-                        is Result.Success -> {
-                            binding.pbEventList.hide()
-                            eventList.clear()
-                            eventList.addAll(result.data)
-                            rvAdapter.notifyDataSetChanged()
-                            binding.rvEventList.show()
-                        }
-                        is Result.Failure -> {
-                            binding.pbEventList.hide()
-                            Toast.makeText(
-                                requireContext(),
-                                "Ocurrio un problema",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            FirebaseCrashlytics.getInstance().recordException(result.exception)
-                            Log.e(TAG, result.exception.toString())
-                        }
-                    }
+        viewModel.getEventList().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.rvEventList.hide()
+                    binding.pbEventList.show()
+                }
+                is Result.Success -> {
+                    binding.pbEventList.hide()
+                    eventList.clear()
+                    eventList.addAll(result.data)
+                    rvAdapter.notifyDataSetChanged()
+                    binding.rvEventList.show()
+                }
+                is Result.Failure -> {
+                    binding.pbEventList.hide()
+                    Toast.makeText(
+                        requireContext(),
+                        "Ocurrio un problema",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    FirebaseCrashlytics.getInstance().recordException(result.exception)
+                    Log.e(TAG, result.exception.toString())
                 }
             }
         }
+
+
     }
 
     override fun onEventClick(eventItemViewBinding: EventItemViewBinding) {

@@ -1,6 +1,8 @@
 package ar.com.intermadia.marvelchallenge.ui.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.com.intermadia.marvelchallenge.core.Result
@@ -15,9 +17,9 @@ class CharacterListViewModel @ViewModelInject constructor(private val useCaseFet
 
     private var offset: Int = 0
 
-    private var characterList = MutableStateFlow<Result<List<Character>>>(Result.Loading())
+    private var characterList = MutableLiveData<Result<List<Character>>>(Result.Loading())
 
-    fun getCharacterList(): StateFlow<Result<List<Character>>> = characterList
+    fun getCharacterList(): LiveData<Result<List<Character>>> = characterList
 
     fun fetchCharacterList() = viewModelScope.launch {
         kotlin.runCatching {
