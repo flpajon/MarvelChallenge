@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bnvMenu.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.characterListFragment -> {
                     binding.bnvMenu.show()

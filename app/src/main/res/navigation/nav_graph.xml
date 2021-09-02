@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/characterListFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/characterListFragment"
         android:name="ar.com.intermadia.marvelchallenge.ui.view.CharacterListFragment"
@@ -22,4 +22,13 @@
         android:id="@+id/eventListFragment"
         android:name="ar.com.intermadia.marvelchallenge.ui.view.EventListFragment"
         android:label="EventListFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ar.com.intermadia.marvelchallenge.ui.view.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
+    </fragment>
 </navigation>
